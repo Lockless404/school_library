@@ -10,6 +10,17 @@
   - Ruby
   - OOP
 
+  ## Getting Started
+
+This repository makes use of Ruby as its core programming language :
+
+- [Clone this repo](https://github.com/Lockless404/school_library)
+ `git clone https://github.com/Lockless404/school_library.git` in your PC terminal
+- Navigate to project's folder/directory
+  `cd school_library`
+- Open your code editor, open the `person.rb` or `student.rb` or `teacher.rb` file and start conributing
+- Alternatively, open `main.rb` file, open a new terminal and run the command `ruby main.rb` to interact with the app
+
 ## Authors
 
 👤 **Hamza Tarar**
