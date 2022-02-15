@@ -1,9 +1,14 @@
 # School Library
 
->
+>An app built for librarians, this app allows you to:
+
+  - Add new students or teachers.
+  - Add new books.
+  - Save records of who borrowed a given book and when.
 
 ## Built with
-  -Ruby
+  - Ruby
+  - OOP
 
 ## Authors
 
