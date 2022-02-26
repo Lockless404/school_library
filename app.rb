@@ -5,12 +5,14 @@ require_relative 'rental'
 require_relative 'book'
 require_relative 'classroom'
 require_relative 'input'
+require_relative 'data'
 
 class App
+  include Data
   def initialize
-    @people = []
-    @books = []
-    @rentals = []
+    @people = load_people
+    @books = load_books
+    @rentals = load_rentals
     @classroom = Classroom.new('Microverse')
   end
 
@@ -66,7 +68,13 @@ class App
 
   def list_all_people
     puts 'No people are created yet! Please use option 4 to create a person.' if @people.empty?
-    @people.map { |person| puts "Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+    @people.map { |person| 
+      if person.instance_of?(Teacher)
+        puts "Name: #{person.name}, ID: #{person.id}, Age: #{person.age}, Specialization: #{person.specialization}"
+      else
+        puts "Name: #{person.name}, ID: #{person.id}, Age: #{person.age}, Parent Permission: #{person.parent_permission}"
+      end
+    }
     sleep 0.75
   end
 
@@ -90,7 +98,7 @@ class App
     print 'Has parent permission? [Y/N]: '
     parent_permission = input.downcase
 
-    student = Student.new(@classroom, age, name, parent_permission)
+    student = Student.new(@classroom.label, age, name, parent_permission)
     @people << student
 
     puts 'Student successfully created!'
@@ -103,7 +111,7 @@ class App
     print 'Specialization: '
     specialization = input
 
-    teacher = Teacher.new(specialization, name, age)
+    teacher = Teacher.new(specialization, age, name)
     @people << teacher
 
     puts 'Teacher successfully created!'
@@ -138,7 +146,7 @@ def create_rental
   date = input.to_s
 
   rental = Rental.new(date, @people[person_id - 1], @books[book_id - 1])
-  @rentals << rental
+  @rentals.push(rental)
 
   puts 'Rental successfully created!'
   sleep 0.75
