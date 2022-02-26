@@ -13,8 +13,8 @@ class Person
     @rental = []
   end
 
-  def add_rental(_date, _book)
-    @rental.push(person)
+  def add_rental(date, book)
+    Rental.new(date, book, self)
   end
 
   def of_age?
