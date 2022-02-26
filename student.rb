@@ -14,6 +14,6 @@ class Student < Person
   end
 
   def play_hooky
-    "Playing......"
+    'Playing......'
   end
 end
