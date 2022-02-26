@@ -10,9 +10,11 @@ module Data
     data = []
     @people.each do |person|
       if person.instance_of?(Teacher)
-        data.push({ key: 'teacher', id: person.id, age: person.age, name: person.name, specialization: person.specialization })
+        data.push({ key: 'teacher', id: person.id, age: person.age, name: person.name,
+                    specialization: person.specialization })
       else
-        data.push({ key: 'student', id: person.id, age: person.age, name: person.name, permission: person.parent_permission, classroom: person.classroom })
+        data.push({ key: 'student', id: person.id, age: person.age, name: person.name,
+                    permission: person.parent_permission, classroom: person.classroom })
       end
     end
     open('person.json', 'w') { |f| f.write JSON.generate(data) }
@@ -41,8 +43,7 @@ module Data
           teacher = Teacher.new(people['specialization'], people['age'], people['name'])
           teacher
         else
-          parent_permission = people['permission'] && true
-          student = Student.new(people['classroom'], people['age'], people['name'], people['permission'])
+          student = Student.new(people['classroom'], people['age'], people['permission'], people['name'])
           student
         end
       end

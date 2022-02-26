@@ -68,13 +68,14 @@ class App
 
   def list_all_people
     puts 'No people are created yet! Please use option 4 to create a person.' if @people.empty?
-    @people.map { |person| 
+    @people.map do |person|
       if person.instance_of?(Teacher)
         puts "Name: #{person.name}, ID: #{person.id}, Age: #{person.age}, Specialization: #{person.specialization}"
       else
-        puts "Name: #{person.name}, ID: #{person.id}, Age: #{person.age}, Parent Permission: #{person.parent_permission}"
+        puts "Name: #{person.name}, ID: #{person.id},
+                                           Age: #{person.age}, Parent Permission: #{person.parent_permission}"
       end
-    }
+    end
     sleep 0.75
   end
 
@@ -98,7 +99,7 @@ class App
     print 'Has parent permission? [Y/N]: '
     parent_permission = input.downcase
 
-    student = Student.new(@classroom.label, age, name, parent_permission)
+    student = Student.new(@classroom.label, age, parent_permission, name)
     @people << student
 
     puts 'Student successfully created!'
